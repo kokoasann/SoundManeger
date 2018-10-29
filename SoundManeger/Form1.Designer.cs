@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
@@ -37,7 +38,10 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.ACButton = new System.Windows.Forms.Button();
             this.volumeBar = new System.Windows.Forms.TrackBar();
-            this.FavCBL = new System.Windows.Forms.CheckedListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.favDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.addFavlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +81,8 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.favDropDown});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -117,20 +123,38 @@
             this.volumeBar.Value = 100;
             this.volumeBar.ValueChanged += new System.EventHandler(this.volumeBar_ValueChanged);
             // 
-            // FavCBL
+            // groupBox1
             // 
-            this.FavCBL.FormattingEnabled = true;
-            this.FavCBL.Location = new System.Drawing.Point(260, 194);
-            this.FavCBL.Name = "FavCBL";
-            this.FavCBL.Size = new System.Drawing.Size(120, 88);
-            this.FavCBL.TabIndex = 8;
+            this.groupBox1.Location = new System.Drawing.Point(259, 194);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(135, 326);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // favDropDown
+            // 
+            this.favDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.favDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addFavlistToolStripMenuItem});
+            this.favDropDown.Image = ((System.Drawing.Image)(resources.GetObject("favDropDown.Image")));
+            this.favDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.favDropDown.Name = "favDropDown";
+            this.favDropDown.Size = new System.Drawing.Size(29, 22);
+            this.favDropDown.Text = "toolStripDropDownButton1";
+            // 
+            // addFavlistToolStripMenuItem
+            // 
+            this.addFavlistToolStripMenuItem.Name = "addFavlistToolStripMenuItem";
+            this.addFavlistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addFavlistToolStripMenuItem.Text = "Add Favlist";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 527);
-            this.Controls.Add(this.FavCBL);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.volumeBar);
             this.Controls.Add(this.ACButton);
             this.Controls.Add(this.trackBar1);
@@ -142,6 +166,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar)).EndInit();
             this.ResumeLayout(false);
@@ -159,7 +185,9 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button ACButton;
         private System.Windows.Forms.TrackBar volumeBar;
-        private System.Windows.Forms.CheckedListBox FavCBL;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolStripDropDownButton favDropDown;
+        private System.Windows.Forms.ToolStripMenuItem addFavlistToolStripMenuItem;
     }
 }
 
