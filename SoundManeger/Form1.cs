@@ -98,7 +98,6 @@ namespace SoundManeger
 
         private void Play(int i)
         {
-            
             listBox1.SelectedItem = listBox1.Items[i];
             string path = listBox1.Items[i].ToString();
             wstream = new WaveStream(System.IO.File.OpenRead(path));
@@ -169,7 +168,7 @@ namespace SoundManeger
 
         private void volumeBar_ValueChanged(object sender, EventArgs e)
         {
-            wstream.Volume = volumeBar.Value;
+            //wstream.Volume = volumeBar.Value;
         }
 
         private void addfavButton_Click(object sender, EventArgs e)
