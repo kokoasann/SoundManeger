@@ -170,15 +170,5 @@ namespace SoundManeger
         {
             //wstream.Volume = volumeBar.Value;
         }
-
-        private void addfavButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void updateButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
