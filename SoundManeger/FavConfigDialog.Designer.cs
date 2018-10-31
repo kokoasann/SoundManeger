@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.addfavButton = new System.Windows.Forms.Button();
             this.favListBox = new System.Windows.Forms.ListBox();
             this.favsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.delToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -49,7 +53,7 @@
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(57, 30);
             this.updateButton.TabIndex = 15;
-            this.updateButton.Text = "button2";
+            this.updateButton.Text = "更新";
             this.updateButton.UseVisualStyleBackColor = true;
             // 
             // addfavButton
@@ -90,6 +94,19 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "filterList";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.delToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // delToolStripMenuItem
+            // 
+            this.delToolStripMenuItem.Name = "delToolStripMenuItem";
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.delToolStripMenuItem.Text = "del";
+            // 
             // FavConfigDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -103,6 +120,7 @@
             this.Controls.Add(this.addfavButton);
             this.Name = "FavConfigDialog";
             this.Text = "FavConfigDialog";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,5 +134,7 @@
         private System.Windows.Forms.ListBox favListBox;
         private System.Windows.Forms.ListBox favsListBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItem;
     }
 }

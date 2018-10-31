@@ -192,12 +192,7 @@ namespace SoundManeger
             FavConfigDialog fcd = new FavConfigDialog(this);
             fcd.ShowDialog();
             xmlSave();
-
-            //Xset.filters.fil = new List<Filter>();
-            //Xset.filters.fil.Add(new Filter());
-            //Xset.filters.fil[0].filterName = "test";
-            //Xset.filters.fil[0].fav = new List<string>();
-            //Xset.filters.fil[0].fav.Add("aaa");
+            
         }
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
