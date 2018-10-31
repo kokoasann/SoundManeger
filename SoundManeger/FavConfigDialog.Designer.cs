@@ -84,6 +84,7 @@
             this.favsListBox.Name = "favsListBox";
             this.favsListBox.Size = new System.Drawing.Size(120, 220);
             this.favsListBox.TabIndex = 17;
+            this.favsListBox.SelectedIndexChanged += new System.EventHandler(this.favsListBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -99,12 +100,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.delToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(91, 26);
             // 
             // delToolStripMenuItem
             // 
             this.delToolStripMenuItem.Name = "delToolStripMenuItem";
-            this.delToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.delToolStripMenuItem.Text = "del";
             // 
             // FavConfigDialog
@@ -134,7 +135,7 @@
         private System.Windows.Forms.ListBox favListBox;
         private System.Windows.Forms.ListBox favsListBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

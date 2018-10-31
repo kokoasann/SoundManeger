@@ -73,6 +73,12 @@ namespace SoundManeger
 
         }
 
+        public string path2fname(string path)
+        {
+            string fn = path.Substring(path.LastIndexOf("\\") + 1);
+            return fn;
+        }
+
         //ドラッグ＆ドロップ
         private void listBox1_DragEnter(object sender, DragEventArgs e)
         {
@@ -90,7 +96,7 @@ namespace SoundManeger
                 if (path.EndsWith("wav") || path.EndsWith("WAV"))
                 {
                     pathList.Add(path);
-                    string fn = path.Substring(path.LastIndexOf("\\")+1);
+                    string fn = path2fname(path);
                     listBox1.Items.Add(fn);
                 }
             }
