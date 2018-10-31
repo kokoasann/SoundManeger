@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace SoundManeger
 {
-    public partial class AddFavDialog : Form
+    public partial class FavConfigDialog : Form
     {
-        public AddFavDialog()
+        private Form1 form;
+
+        public FavConfigDialog(Form1 form)
         {
             InitializeComponent();
+            this.form = form;
         }
     }
 }

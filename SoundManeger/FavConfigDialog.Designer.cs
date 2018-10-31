@@ -1,6 +1,6 @@
 ﻿namespace SoundManeger
 {
-    partial class AddFavDialog
+    partial class FavConfigDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,7 @@
             this.addfavButton.Name = "addfavButton";
             this.addfavButton.Size = new System.Drawing.Size(57, 30);
             this.addfavButton.TabIndex = 14;
-            this.addfavButton.Text = "Add";
+            this.addfavButton.Text = "追加";
             this.addfavButton.UseVisualStyleBackColor = true;
             // 
             // favListBox
@@ -90,7 +90,7 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "filterList";
             // 
-            // AddFavDialog
+            // FavConfigDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,8 +101,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.addfavButton);
-            this.Name = "AddFavDialog";
-            this.Text = "AddFavDialog";
+            this.Name = "FavConfigDialog";
+            this.Text = "FavConfigDialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 

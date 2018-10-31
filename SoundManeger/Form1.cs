@@ -18,23 +18,34 @@ namespace SoundManeger
         private int playInd =0;
         private bool isPlay = false;
 
+        private List<string> pathList = new List<string>();
+
         private TimeSpan time = new TimeSpan();
         private NAudio.Wave.WaveFileReader wfr = null;
 
-        private setting Xset = new setting();
-        
+        public setting Xset { get; set; } = new setting();
+
         public Form1()
         {
             InitializeComponent();
-            Xset.filters = new Filters();
-            Xset.filters.fil = new List<Filter>();
-            Xset.filters.fil.Add(new Filter());
-            Xset.filters.fil[0].filterName = "test";
-            Xset.filters.fil[0].fav = new List<string>();
-            Xset.filters.fil[0].fav.Add("aaa");
-            xmlSave();
+            xmlLoad();
+            xset2favslist();
+            //Xset.filters = new Filters();
+            //Xset.filters.fil = new List<Filter>();
+            //Xset.filters.fil.Add(new Filter());
+            //Xset.filters.fil[0].filterName = "test";
+            //Xset.filters.fil[0].fav = new List<string>();
+            //Xset.filters.fil[0].fav.Add("aaa");
+            //xmlSave();
         }
 
+        public void xset2favslist()
+        {
+            foreach (var fs in Xset.filters.fil)
+            {
+                FavsCheckListBox.Items.Add(fs.filterName,false);
+            }
+        }
         private void xmlLoad()
         {
             System.IO.FileStream FO = new System.IO.FileStream(@"setting.xml", System.IO.FileMode.Open);
@@ -74,10 +85,14 @@ namespace SoundManeger
         private void listBox1_DragDrop(object sender, DragEventArgs e)
         {
             string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach(var fn in fileName)
+            foreach(var path in fileName)
             {
-                if(fn.EndsWith("wav") || fn.EndsWith("WAV"))
+                if (path.EndsWith("wav") || path.EndsWith("WAV"))
+                {
+                    pathList.Add(path);
+                    string fn = path.Substring(path.LastIndexOf("\\")+1);
                     listBox1.Items.Add(fn);
+                }
             }
             //listBox1.Items.AddRange(fileName);
             while (listBox1.Items.Count > 4096)
@@ -169,6 +184,57 @@ namespace SoundManeger
         private void volumeBar_ValueChanged(object sender, EventArgs e)
         {
             //wstream.Volume = volumeBar.Value;
+        }
+
+        //お気に入りのコンフィグを開く
+        private void FavlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FavConfigDialog fcd = new FavConfigDialog(this);
+            fcd.ShowDialog();
+            xmlSave();
+
+            //Xset.filters.fil = new List<Filter>();
+            //Xset.filters.fil.Add(new Filter());
+            //Xset.filters.fil[0].filterName = "test";
+            //Xset.filters.fil[0].fav = new List<string>();
+            //Xset.filters.fil[0].fav.Add("aaa");
+        }
+
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedIndex != -1)
+                NameTextBox.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
+        }
+
+        //ファイルのリネーム
+        private void NameUpdateButton_Click(object sender, EventArgs e)
+        {
+            string oldpath = pathList[listBox1.SelectedIndex];
+            string path = oldpath.Remove(oldpath.LastIndexOf("\\") + 1);
+            path += NameTextBox.Text;
+            listBox1.Items[listBox1.SelectedIndex] = NameTextBox.Text;
+            System.IO.File.Move(oldpath, path);
+        }
+
+        private void FavsAddButton_Click(object sender, EventArgs e)
+        {
+            FavsCheckListBox.Items.Add(FavsNameTextBox.Text,false);
+
+            Filter filter = new Filter();
+            filter.filterName = FavsNameTextBox.Text;
+            Xset.filters.fil.Add(filter);
+
+        }
+
+        private void FavAddButton_Click(object sender, EventArgs e)
+        {
+            for(int i = 0;i < FavsCheckListBox.Items.Count;i++)
+            {
+                if(FavsCheckListBox.GetItemChecked(i))
+                {
+                    Xset.filters.fil[i].fav.Add(pathList[listBox1.SelectedIndex]);
+                }
+            }
         }
     }
 }
