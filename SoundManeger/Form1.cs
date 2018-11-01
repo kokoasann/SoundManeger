@@ -19,17 +19,42 @@ namespace SoundManeger
         private bool isPlay = false;
 
         private List<string> pathList = new List<string>();
+        //public List<string> pathList
+        //{
+        //    get
+        //    {
+        //        return pathList;
+        //    }
+        //    set
+        //    {
+        //        pathList = value;
+        //    }
+        //}
 
         private TimeSpan time = new TimeSpan();
         private NAudio.Wave.WaveFileReader wfr = null;
 
-        public setting Xset { get; set; } = new setting();
+        public setting Xset
+        {
+            get;
+            set;
+        }
 
         public Form1()
         {
             InitializeComponent();
             xmlLoad();
             xset2favslist();
+
+            pathList = new List<string>();
+            if(Xset == null)
+                Xset = new setting();
+            if (Xset.filters == null) 
+                Xset.filters = new Filters();
+            if(Xset.filters.fil == null)
+                Xset.filters.fil = new List<Filter>();
+
+            FavsCheckListBox.ContextMenuStrip = FCLBMenuStrip;
             //Xset.filters = new Filters();
             //Xset.filters.fil = new List<Filter>();
             //Xset.filters.fil.Add(new Filter());
@@ -39,13 +64,16 @@ namespace SoundManeger
             //xmlSave();
         }
 
+        //xmlのデータをfavslistに入れる
         public void xset2favslist()
         {
+            FavsCheckListBox.Items.Clear();
             foreach (var fs in Xset.filters.fil)
             {
                 FavsCheckListBox.Items.Add(fs.filterName,false);
             }
         }
+
         private void xmlLoad()
         {
             System.IO.FileStream FO = new System.IO.FileStream(@"setting.xml", System.IO.FileMode.Open);
@@ -73,6 +101,7 @@ namespace SoundManeger
 
         }
 
+        //ファイルのパスをファイル名だけにする
         public string path2fname(string path)
         {
             string fn = path.Substring(path.LastIndexOf("\\") + 1);
@@ -120,13 +149,15 @@ namespace SoundManeger
         private void Play(int i)
         {
             listBox1.SelectedItem = listBox1.Items[i];
-            string path = listBox1.Items[i].ToString();
+            //string path = listBox1.Items[i].ToString();
+            string path = pathList[i];
             wstream = new WaveStream(System.IO.File.OpenRead(path));
             wstream.Volume = volumeBar.Value;
             using (soundPlayer = new System.Media.SoundPlayer(wstream))
             {
                 //soundPlayer = new System.Media.SoundPlayer(path);
                 soundPlayer.Play();
+                //soundPlayer.PlaySync();
 
                 isPlay = true;
 
@@ -171,7 +202,6 @@ namespace SoundManeger
                     Play(playInd);
                 }
             }
-            
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -180,6 +210,9 @@ namespace SoundManeger
             {
                 Stop();
             }
+            if (this.ActiveControl == FavsNameTextBox)
+                if ((Keys)e.KeyChar == Keys.Enter)
+                    FavsAdd();
         }
 
         private void ACButton_Click(object sender, EventArgs e)
@@ -217,18 +250,29 @@ namespace SoundManeger
             System.IO.File.Move(oldpath, path);
         }
 
-        private void FavsAddButton_Click(object sender, EventArgs e)
+        private void FavsAdd()
         {
-            FavsCheckListBox.Items.Add(FavsNameTextBox.Text,false);
+            if (FavsNameTextBox.Text == "" || FavsNameTextBox.Text == " " || FavsNameTextBox.Text == "　")
+                return;
+
+            FavsCheckListBox.Items.Add(FavsNameTextBox.Text, false);
 
             Filter filter = new Filter();
             filter.filterName = FavsNameTextBox.Text;
             Xset.filters.fil.Add(filter);
+            Xset.filters.fil[Xset.filters.fil.Count - 1].fav = new List<string>();
 
+            FavsNameTextBox.Text = "";
+        }
+        private void FavsAddButton_Click(object sender, EventArgs e)
+        {
+            FavsAdd();
         }
 
         private void FavAddButton_Click(object sender, EventArgs e)
         {
+            if (listBox1.SelectedIndex == -1)
+                return;
             for(int i = 0;i < FavsCheckListBox.Items.Count;i++)
             {
                 if(FavsCheckListBox.GetItemChecked(i))
@@ -236,6 +280,32 @@ namespace SoundManeger
                     Xset.filters.fil[i].fav.Add(pathList[listBox1.SelectedIndex]);
                 }
             }
+        }
+
+        //選択したフィルターをプレイリストに表示する
+        private void SelFilDispItem_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            pathList.Clear();
+
+            for(int i = 0;i < FavsCheckListBox.Items.Count;i++)
+            {
+                if(FavsCheckListBox.GetItemChecked(i))
+                {
+                    foreach (var f in Xset.filters.fil[i].fav)
+                    {
+                        pathList.Add(f);
+                        string fname = path2fname(f);
+                        listBox1.Items.Add(fname);
+                    }
+                }
+            }
+        }
+
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            xmlSave();
         }
     }
 }

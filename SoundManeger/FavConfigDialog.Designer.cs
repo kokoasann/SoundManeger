@@ -35,9 +35,12 @@
             this.favListBox = new System.Windows.Forms.ListBox();
             this.favsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.FavsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.delToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
+            this.FavMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ItemDeleteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FavsMenuStrip.SuspendLayout();
+            this.FavMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -95,18 +98,33 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "filterList";
             // 
-            // contextMenuStrip1
+            // FavsMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FavsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.delToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(91, 26);
+            this.FavsMenuStrip.Name = "contextMenuStrip1";
+            this.FavsMenuStrip.Size = new System.Drawing.Size(132, 26);
             // 
             // delToolStripMenuItem
             // 
             this.delToolStripMenuItem.Name = "delToolStripMenuItem";
-            this.delToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
-            this.delToolStripMenuItem.Text = "del";
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.delToolStripMenuItem.Text = "選択を削除";
+            this.delToolStripMenuItem.Click += new System.EventHandler(this.delToolStripMenuItem_Click);
+            // 
+            // FavMenuStrip
+            // 
+            this.FavMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ItemDeleteItem});
+            this.FavMenuStrip.Name = "FavMenuStrip";
+            this.FavMenuStrip.Size = new System.Drawing.Size(132, 26);
+            // 
+            // ItemDeleteItem
+            // 
+            this.ItemDeleteItem.Name = "ItemDeleteItem";
+            this.ItemDeleteItem.Size = new System.Drawing.Size(180, 22);
+            this.ItemDeleteItem.Text = "選択を削除";
+            this.ItemDeleteItem.Click += new System.EventHandler(this.ItemDeleteItem_Click);
             // 
             // FavConfigDialog
             // 
@@ -121,7 +139,9 @@
             this.Controls.Add(this.addfavButton);
             this.Name = "FavConfigDialog";
             this.Text = "FavConfigDialog";
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FavConfigDialog_FormClosed);
+            this.FavsMenuStrip.ResumeLayout(false);
+            this.FavMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +156,8 @@
         private System.Windows.Forms.ListBox favsListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip FavsMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip FavMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ItemDeleteItem;
     }
 }

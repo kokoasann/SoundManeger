@@ -34,6 +34,8 @@
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.favDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.FavlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.ACButton = new System.Windows.Forms.Button();
@@ -43,12 +45,13 @@
             this.FavAddButton = new System.Windows.Forms.Button();
             this.FavsAddButton = new System.Windows.Forms.Button();
             this.FavsCheckListBox = new System.Windows.Forms.CheckedListBox();
-            this.FavlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.favDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.FavsNameTextBox = new System.Windows.Forms.TextBox();
+            this.FCLBMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SelFilDispItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar)).BeginInit();
+            this.FCLBMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -94,6 +97,24 @@
             this.toolStrip1.Size = new System.Drawing.Size(811, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // favDropDown
+            // 
+            this.favDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.favDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FavlistToolStripMenuItem});
+            this.favDropDown.Image = ((System.Drawing.Image)(resources.GetObject("favDropDown.Image")));
+            this.favDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.favDropDown.Name = "favDropDown";
+            this.favDropDown.Size = new System.Drawing.Size(29, 22);
+            this.favDropDown.Text = "toolStripDropDownButton1";
+            // 
+            // FavlistToolStripMenuItem
+            // 
+            this.FavlistToolStripMenuItem.Name = "FavlistToolStripMenuItem";
+            this.FavlistToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.FavlistToolStripMenuItem.Text = "お気に入り設定";
+            this.FavlistToolStripMenuItem.Click += new System.EventHandler(this.FavlistToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
@@ -174,30 +195,26 @@
             this.FavsCheckListBox.Size = new System.Drawing.Size(186, 256);
             this.FavsCheckListBox.TabIndex = 13;
             // 
-            // FavlistToolStripMenuItem
-            // 
-            this.FavlistToolStripMenuItem.Name = "FavlistToolStripMenuItem";
-            this.FavlistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.FavlistToolStripMenuItem.Text = "お気に入り設定";
-            this.FavlistToolStripMenuItem.Click += new System.EventHandler(this.FavlistToolStripMenuItem_Click);
-            // 
-            // favDropDown
-            // 
-            this.favDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.favDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FavlistToolStripMenuItem});
-            this.favDropDown.Image = ((System.Drawing.Image)(resources.GetObject("favDropDown.Image")));
-            this.favDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.favDropDown.Name = "favDropDown";
-            this.favDropDown.Size = new System.Drawing.Size(29, 22);
-            this.favDropDown.Text = "toolStripDropDownButton1";
-            // 
             // FavsNameTextBox
             // 
             this.FavsNameTextBox.Location = new System.Drawing.Point(260, 203);
             this.FavsNameTextBox.Name = "FavsNameTextBox";
             this.FavsNameTextBox.Size = new System.Drawing.Size(186, 19);
             this.FavsNameTextBox.TabIndex = 14;
+            // 
+            // FCLBMenuStrip
+            // 
+            this.FCLBMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelFilDispItem});
+            this.FCLBMenuStrip.Name = "FCLBMenuStrip";
+            this.FCLBMenuStrip.Size = new System.Drawing.Size(175, 26);
+            // 
+            // SelFilDispItem
+            // 
+            this.SelFilDispItem.Name = "SelFilDispItem";
+            this.SelFilDispItem.Size = new System.Drawing.Size(180, 22);
+            this.SelFilDispItem.Text = "選択フィルターの表示";
+            this.SelFilDispItem.Click += new System.EventHandler(this.SelFilDispItem_Click);
             // 
             // Form1
             // 
@@ -220,11 +237,13 @@
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar)).EndInit();
+            this.FCLBMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,6 +267,8 @@
         private System.Windows.Forms.Button FavsAddButton;
         private System.Windows.Forms.CheckedListBox FavsCheckListBox;
         private System.Windows.Forms.TextBox FavsNameTextBox;
+        private System.Windows.Forms.ContextMenuStrip FCLBMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem SelFilDispItem;
     }
 }
 
