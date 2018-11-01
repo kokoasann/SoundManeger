@@ -14,6 +14,7 @@ namespace SoundManeger
     {
         private Form1 form;
 
+        //コンストラクタ
         public FavConfigDialog(Form1 form)
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace SoundManeger
             favListBox.ContextMenuStrip = FavMenuStrip;
         }
 
+        //選択したフィルターの中身をfavlistに表示する
         private void favsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (favsListBox.SelectedIndex == -1)
@@ -66,6 +68,7 @@ namespace SoundManeger
             favListBox.Items.RemoveAt(favListBox.SelectedIndex);
         }
         
+        //ウインドウを閉じるときの処理
         private void FavConfigDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
             form.xset2favslist();

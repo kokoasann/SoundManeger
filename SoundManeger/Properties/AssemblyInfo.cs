@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("SoundManeger")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("音声管理ツール")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("kokoasann")]
 [assembly: AssemblyProduct("SoundManeger")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

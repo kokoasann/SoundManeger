@@ -10,7 +10,7 @@ namespace SoundManeger
         [XmlElement("filters")]
         public Filters filters { get; set; }
     }
-
+    
     public class Filters
     {
         [XmlElement("filter")]

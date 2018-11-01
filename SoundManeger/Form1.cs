@@ -34,12 +34,14 @@ namespace SoundManeger
         private TimeSpan time = new TimeSpan();
         private NAudio.Wave.WaveFileReader wfr = null;
 
+        ///xml用のクラスのプロパティ
         public setting Xset
         {
             get;
             set;
         }
 
+        ///コンストラクタ
         public Form1()
         {
             InitializeComponent();
@@ -64,7 +66,7 @@ namespace SoundManeger
             //xmlSave();
         }
 
-        //xmlのデータをfavslistに入れる
+        ///xmlのデータをfavslistに入れる
         public void xset2favslist()
         {
             FavsCheckListBox.Items.Clear();
@@ -74,6 +76,7 @@ namespace SoundManeger
             }
         }
 
+        ///xmlファイルの読み込み
         private void xmlLoad()
         {
             System.IO.FileStream FO = new System.IO.FileStream(@"setting.xml", System.IO.FileMode.Open);
@@ -82,6 +85,7 @@ namespace SoundManeger
             FO.Close();
         }
 
+        ///xmlファイルの保存
         private void xmlSave()
         {
 
@@ -101,14 +105,14 @@ namespace SoundManeger
 
         }
 
-        //ファイルのパスをファイル名だけにする
+        ///ファイルのパスをファイル名だけにする
         public string path2fname(string path)
         {
             string fn = path.Substring(path.LastIndexOf("\\") + 1);
             return fn;
         }
 
-        //ドラッグ＆ドロップ
+        ///ドラッグ＆ドロップ
         private void listBox1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -116,7 +120,7 @@ namespace SoundManeger
             else
                 e.Effect = DragDropEffects.None;
         }
-        //ドラッグ＆ドロップ
+        ///ドラッグ＆ドロップ
         private void listBox1_DragDrop(object sender, DragEventArgs e)
         {
             string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -136,6 +140,7 @@ namespace SoundManeger
             }
         }
 
+        ///音声再生ボタン
         private void StartButton_Click(object sender, EventArgs e)
         {
             int i = listBox1.SelectedIndex;
@@ -146,6 +151,7 @@ namespace SoundManeger
             listBox1.Focus();
         }
 
+        ///音声再生
         private void Play(int i)
         {
             listBox1.SelectedItem = listBox1.Items[i];
@@ -166,12 +172,14 @@ namespace SoundManeger
             }
         }
 
+        ///音声停止ボタン
         private void StopButton_Click(object sender, EventArgs e)
         {
             Stop();
             listBox1.Focus();
         }
 
+        ///音声停止
         private void Stop()
         {
             if (soundPlayer == null)
@@ -185,6 +193,7 @@ namespace SoundManeger
             isPlay = false;
         }
 
+        ///一定間隔で呼ばれ続けるやつ
         private void timer_Tick(object sender, EventArgs e)
         {
             if (isPlay)
@@ -204,6 +213,7 @@ namespace SoundManeger
             }
         }
 
+        ///キー押された時の処理
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if((Keys)e.KeyChar == Keys.Space)
@@ -215,17 +225,19 @@ namespace SoundManeger
                     FavsAdd();
         }
 
+        ///プレイリスト全削除
         private void ACButton_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
         }
 
+        ///ヴォリュームの
         private void volumeBar_ValueChanged(object sender, EventArgs e)
         {
             //wstream.Volume = volumeBar.Value;
         }
 
-        //お気に入りのコンフィグを開く
+        ///お気に入りのコンフィグを開く
         private void FavlistToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FavConfigDialog fcd = new FavConfigDialog(this);
@@ -234,13 +246,14 @@ namespace SoundManeger
             
         }
 
+        ///プレイリストの選択が変わったときにテキストボックスの中身を変える処理
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             if(listBox1.SelectedIndex != -1)
                 NameTextBox.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
         }
 
-        //ファイルのリネーム
+        ///ファイルのリネーム
         private void NameUpdateButton_Click(object sender, EventArgs e)
         {
             string oldpath = pathList[listBox1.SelectedIndex];
@@ -250,6 +263,7 @@ namespace SoundManeger
             System.IO.File.Move(oldpath, path);
         }
 
+        ///フィルターを追加
         private void FavsAdd()
         {
             if (FavsNameTextBox.Text == "" || FavsNameTextBox.Text == " " || FavsNameTextBox.Text == "　")
@@ -264,11 +278,14 @@ namespace SoundManeger
 
             FavsNameTextBox.Text = "";
         }
+
+        ///フィルター追加ボタン
         private void FavsAddButton_Click(object sender, EventArgs e)
         {
             FavsAdd();
         }
 
+        ///選択されたフィルターに選択したプレイリストのアイテムを入れる
         private void FavAddButton_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex == -1)
@@ -282,7 +299,7 @@ namespace SoundManeger
             }
         }
 
-        //選択したフィルターをプレイリストに表示する
+        ///選択したフィルターをプレイリストに表示する
         private void SelFilDispItem_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
@@ -302,7 +319,7 @@ namespace SoundManeger
             }
         }
 
-
+        ///ウインドウを閉じたときの処理
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             xmlSave();
