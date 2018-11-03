@@ -154,7 +154,7 @@ namespace SoundManeger
         ///音声再生
         private void Play(int i)
         {
-            listBox1.SelectedItem = listBox1.Items[i];
+            listBox1.SelectedIndex = i;
             //string path = listBox1.Items[i].ToString();
             string path = pathList[i];
             wstream = new WaveStream(System.IO.File.OpenRead(path));
